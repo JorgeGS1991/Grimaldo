@@ -1,69 +1,330 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jorge Grimaldo</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jorge Grimaldo | Software Developer</title>
+    <meta
+      name="description"
+      content="Jorge Grimaldo — Software Developer in Omaha. Building modern web solutions. Founder at NiftyTechs."
+    />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="/static/style.css" />
+    <!-- Open Graph (social preview) -->
+    <meta property="og:title" content="Jorge Grimaldo | Software Developer" />
+    <meta
+      property="og:description"
+      content="Software Developer in Omaha. Building modern web solutions. Founder at NiftyTechs."
+    />
+    <meta property="og:type" content="website" />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script defer src="/static/app.js"></script>
+  </head>
 
-<body>
-  <header class="hero">
-    <nav class="nav">
-      <span class="logo">JG</span>
-      <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
-    </nav>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <div class="hero-content">
-      <h1>Hi, I’m Jorge.</h1>
-      <p class="subtitle">
-        I build clean, fast, and thoughtful web experiences.
-      </p>
-      <a href="#contact" class="btn">Get in touch</a>
-    </div>
-  </header>
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="brand-mark" aria-hidden="true">JG</span>
+          <span class="brand-text">Jorge Grimaldo</span>
+        </a>
 
-  <main>
-    <section class="section">
-      <h2>What I Do</h2>
-      <p>
-        I focus on modern frontend development, performance,
-        and creating interfaces that feel intuitive and human.
-      </p>
-    </section>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links">
+            <span class="sr-only">Toggle navigation</span>
+            ☰
+          </button>
 
-    <section class="section">
-      <h2>Selected Work</h2>
-      <div class="cards">
-        <div class="card">Project One</div>
-        <div class="card">Project Two</div>
-        <div class="card">Project Three</div>
+          <div class="nav-links" id="nav-links">
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#niftytechs">NiftyTechs</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <span class="theme-icon" aria-hidden="true">🌙</span>
+          </button>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <p>
-        Want to work together or just say hi?
-        <br />
-        <a href="mailto:hello@jgrimaldo.com">hello@jgrimaldo.com</a>
-      </p>
-    </section>
-  </main>
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-text">
+            <p class="eyebrow">Software Developer • Omaha</p>
+            <h1>
+              Building reliable, modern web experiences
+              <span class="accent">with clarity and performance</span>.
+            </h1>
+            <p class="lead">
+              I’m Jorge Grimaldo — I build clean, maintainable applications and ship practical solutions.
+              Co-Founder at <strong>NiftyTechs</strong>.
+            </p>
 
-  <footer class="footer">
-    © <span id="year"></span> Jorge Grimaldo
-  </footer>
+            <div class="cta-row">
+              <a class="btn primary" href="#work">View Work</a>
+              <a class="btn ghost" href="#contact">Contact</a>
+              <a class="btn subtle" href="https://niftytechs.com" target="_blank" rel="noreferrer">
+                Visit NiftyTechs ↗
+              </a>
+            </div>
 
-  <!-- Scripts -->
-  <script src="/static/app.js"></script>
-</body>
+            <div class="meta-row">
+              <span class="pill">Frontend</span>
+              <span class="pill">Backend</span>
+              <span class="pill">APIs</span>
+              <span class="pill">Deployment</span>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="card">
+              <div class="card-top">
+                <div class="avatar" aria-hidden="true">JG</div>
+                <div>
+                  <p class="card-title">Jorge Grimaldo</p>
+                  <p class="card-subtitle">Developer • Builder • Founder</p>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="stat-grid">
+                  <div class="stat">
+                    <p class="stat-label">Location</p>
+                    <p class="stat-value">Omaha, NE</p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-label">Focus</p>
+                    <p class="stat-value">Modern Web</p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-label">Company</p>
+                    <p class="stat-value">NiftyTechs</p>
+                  </div>
+                  <div class="stat">
+                    <p class="stat-label">Availability</p>
+                    <p class="stat-value">Open to projects</p>
+                  </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <p class="small">
+                  This site is intentionally simple: fast loading, clean design, and focused on what matters.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bg" aria-hidden="true"></div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-head">
+            <h2>About</h2>
+            <p>
+              I build software that’s easy to use, easy to maintain, and built to last.
+            </p>
+          </div>
+
+          <div class="grid-2">
+            <div class="panel">
+              <h3>What I do</h3>
+              <p>
+                I create modern web applications — from polished interfaces to backend services and deployment.
+                I like building systems that are dependable, understandable, and performance-minded.
+              </p>
+              <p>
+                Based in <strong>Omaha</strong>, I work with individuals and businesses to turn ideas into real products.
+              </p>
+            </div>
+
+            <div class="panel">
+              <h3>Core strengths</h3>
+              <ul class="checklist">
+                <li>Clean UI and responsive layouts</li>
+                <li>APIs & backend logic</li>
+                <li>Performance & reliability</li>
+                <li>Deployment, domains, and CI-friendly workflows</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="section alt" id="work">
+        <div class="container">
+          <div class="section-head">
+            <h2>Work</h2>
+              <p>
+                A selection of projects and practical work I’ve built — focused on clean design,
+                reliable functionality, and real-world use.
+              </p>
+
+          </div>
+
+          <div class="cards">
+            <article class="work-card">
+              <h3>Project / Portfolio Site</h3>
+              <p>
+                A fast, modern personal site designed for clarity, performance, and mobile-first browsing.
+              </p>
+              <div class="tags">
+                <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+              </div>
+              <div class="card-actions">
+                <a class="link" href="https://github.com/JorgeGS1991" target="_blank" rel="noreferrer">
+                  GitHub ↗
+                </a>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <h3>Business Solutions</h3>
+              <p>
+                Practical web solutions for business workflows — simple, reliable, and easy to operate.
+              </p>
+              <div class="tags">
+                <span class="tag">Web Apps</span><span class="tag">APIs</span><span class="tag">Deployment</span>
+              </div>
+              <div class="card-actions">
+                <a class="link" href="#niftytechs">Learn more →</a>
+              </div>
+            </article>
+
+            <article class="work-card">
+              <h3>Automation & Tools</h3>
+              <p>
+                Small tools that remove friction: dashboards, scripts, integrations, and internal utilities.
+              </p>
+              <div class="tags">
+                <span class="tag">Automation</span><span class="tag">Tooling</span><span class="tag">Ops</span>
+              </div>
+              <div class="card-actions">
+                <a class="link" href="#contact">Ask about it →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- NIFTYTECHS -->
+      <section class="section" id="niftytechs">
+        <div class="container">
+          <div class="section-head">
+            <h2>NiftyTechs</h2>
+            <p>
+              NiftyTechs — focused on building practical digital solutions for businesses.
+            </p>
+          </div>
+
+          <div class="nifty">
+            <div class="panel">
+              <h3>Founder at NiftyTechs</h3>
+              <p>
+                Through NiftyTechs, I work with clients to design, develop, and deploy reliable software tailored
+                to real-world needs — from websites to custom web apps.
+              </p>
+
+              <div class="cta-row">
+                <a class="btn primary" href="https://niftytechs.com" target="_blank" rel="noreferrer">
+                  Visit NiftyTechs ↗
+                </a>
+                <a class="btn ghost" href="#contact">Work with me</a>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>What we help with</h3>
+              <ul class="checklist">
+                <li>Business websites and landing pages</li>
+                <li>Custom web applications</li>
+                <li>Maintenance, updates, and optimization</li>
+                <li>Domains, hosting, and deployments</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section alt" id="contact">
+        <div class="container">
+          <div class="section-head">
+            <h2>Contact</h2>
+            <p>
+              Want to collaborate or hire me? Send a message — I’ll respond.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="panel">
+              <h3>Quick links</h3>
+              <ul class="contact-list">
+                <li>
+                  <span class="muted">Email:</span>
+                  <a class="link" href="mailto:hello@jgrimaldo.com">hello@jgrimaldo.com</a>
+                </li>
+                <li>
+                  <span class="muted">GitHub:</span>
+                  <a class="link" href="https://github.com/JorgeGS1991" target="_blank" rel="noreferrer">
+                    github.com/JorgeGS1991 ↗
+                  </a>
+                </li>
+                <li>
+                  <span class="muted">Company:</span>
+                  <a class="link" href="https://niftytechs.com" target="_blank" rel="noreferrer">
+                    niftytechs.com ↗
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="panel">
+              <h3>Send a message</h3>
+              <form class="contact-form" id="contactForm">
+                <label>
+                  <span>Name</span>
+                  <input name="name" type="text" placeholder="Your name" autocomplete="name" />
+                </label>
+
+                <label>
+                  <span>Email</span>
+                  <input name="email" type="email" placeholder="you@email.com" autocomplete="email" />
+                </label>
+
+                <label>
+                  <span>Message</span>
+                  <textarea name="message" rows="5" placeholder="What are you working on?"></textarea>
+                </label>
+
+                <button class="btn primary" type="submit">Send</button>
+                <p class="small muted" id="formHint">
+                  This form opens your email app (no backend needed yet).
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="container footer-inner">
+          <p class="small muted">© <span id="year"></span> Jorge Grimaldo — Built with care.</p>
+          <a class="link small" href="#top">Back to top ↑</a>
+        </div>
+      </footer>
+    </main>
+  </body>
 </html>
