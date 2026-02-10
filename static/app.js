@@ -296,7 +296,10 @@ window.addEventListener("pointermove", (e) => {
   pointer.set(mouseX, mouseY);
 }, { passive: true });
 
-window.addEventListener("click", () => {
+window.addEventListener("click", (e) => {
+  // Ignore clicks on UI / overlay controls
+  const isUI = e.target.closest(".hud, .overlay, dialog");
+  if (isUI) return;
   raycaster.setFromCamera(pointer, camera);
   const hits = raycaster.intersectObjects(clickable, false);
   if (hits.length){
