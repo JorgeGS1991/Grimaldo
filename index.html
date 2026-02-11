@@ -1,273 +1,134 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jorge Grimaldo | Developer</title>
-    <meta name="description" content="Jorge Grimaldo — Software Developer in Omaha. Founder at NiftyTechs." />
-    <link rel="stylesheet" href="/static/style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Jorge Grimaldo — Software Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Jorge Grimaldo — Software Developer in Omaha. Clean UI, reliable systems, founder at NiftyTechs." />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
 
-  <body>
-    <!-- Top bar -->
-    <header class="topbar">
-      <div class="container topbar-inner">
-        <a class="brand" href="#top" aria-label="Home">
-          <span class="brand-mark">JG</span>
-          <span class="brand-text">Jorge Grimaldo</span>
+<body>
+  <!-- IMMERSIVE MODE -->
+  <div id="immersive" class="immersive">
+    <canvas id="scene"></canvas>
+
+    <main class="overlay">
+      <!-- HERO -->
+      <section class="panel active" data-panel="hero">
+        <p class="terminal">
+          <span class="prompt">jorge@omaha</span>
+          <span class="dim">:</span>
+          <span class="path">~/build</span>
+          <span class="dim">$</span>
+          <span id="typeTarget"></span><span class="caret">▍</span>
+        </p>
+
+        <h1>
+          Calm by default.<br />
+          <span class="accent">Wow when you engage.</span>
+        </h1>
+
+        <p class="lead">
+          Software Developer in Omaha · Founder at <strong>NiftyTechs</strong>
+        </p>
+
+        <!-- COMMAND STRIP -->
+        <div class="command-strip">
+          <span class="prompt">jorge@omaha</span>
+          <span class="path">~/site</span>
+          <span class="caret">▸</span>
+          <button data-jump="about">about</button>
+          <button data-jump="work">work</button>
+          <button data-jump="nifty">nifty</button>
+          <button data-jump="contact">contact</button>
+        </div>
+
+        <p class="micro">
+          Tip: This experience stays calm until you move, hover, or scroll.
+        </p>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="panel" data-panel="about">
+        <h2>About</h2>
+        <p>
+          I’m Jorge Grimaldo — a developer focused on clean UI, reliable systems,
+          and fast, maintainable web apps. I enjoy turning ideas into real products
+          and making technology feel simple.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>What I build</h3>
+            <ul>
+              <li>Web apps & dashboards</li>
+              <li>APIs and backend services</li>
+              <li>Deployments, domains, performance fixes</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Based in</h3>
+            <p class="big">Omaha, NE</p>
+            <p class="muted">Open to projects & collaborations.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="panel" data-panel="work">
+        <h2>Work</h2>
+        <p>
+          Selected projects focused on clarity, speed, and real-world reliability.
+        </p>
+
+        <div class="work-grid">
+          <article class="work-card">
+            <h3>Personal Portfolio</h3>
+            <p>Fast, modern, and intentionally calm.</p>
+            <div class="chips"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          </article>
+
+          <article class="work-card">
+            <h3>NiftyTechs Builds</h3>
+            <p>Client sites and web apps built for businesses.</p>
+            <div class="chips"><span>Web</span><span>APIs</span><span>Deploy</span></div>
+          </article>
+
+          <article class="work-card">
+            <h3>Automation & Tools</h3>
+            <p>Internal tools that remove friction.</p>
+            <div class="chips"><span>DX</span><span>Ops</span></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- NIFTY -->
+      <section class="panel" data-panel="nifty">
+        <h2>NiftyTechs</h2>
+        <p>
+          Founder of NiftyTechs — building practical digital solutions
+          for businesses: websites, apps, and ongoing improvements.
+        </p>
+
+        <a class="btn primary" href="https://niftytechs.com" target="_blank">
+          Visit niftytechs.com ↗
         </a>
-
-        <nav class="nav" aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#work">Work</a>
-          <a href="#nifty">NiftyTechs</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="actions">
-          <button class="toggle" id="immersiveToggle" type="button" aria-pressed="false">
-            <span class="toggle-dot" aria-hidden="true"></span>
-            Immersive
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <!-- IMMERSIVE LAYER (hidden by default) -->
-    <div id="immersive" class="immersive" aria-hidden="true">
-      <canvas id="scene" aria-hidden="true"></canvas>
-
-      <header class="hud" aria-label="Immersive HUD">
-        <div class="hud-left">
-          <div class="hint">
-            <span class="dot"></span>
-            <span>Scroll to explore • Click nodes</span>
-          </div>
-        </div>
-
-        <nav class="hud-nav" aria-label="Immersive Sections">
-          <button class="hud-btn" data-jump="hero">Home</button>
-          <button class="hud-btn" data-jump="about">About</button>
-          <button class="hud-btn" data-jump="work">Work</button>
-          <button class="hud-btn" data-jump="nifty">NiftyTechs</button>
-          <button class="hud-btn" data-jump="contact">Contact</button>
-        </nav>
-
-        <div class="hud-right">
-          <button class="pill" id="exitImmersive" type="button">Exit</button>
-        </div>
-      </header>
-
-      <!-- Immersive content overlay: anchored and readable -->
-      <main class="overlay" aria-label="Immersive Content">
-        <section class="panel active" data-panel="hero">
-          <p class="terminal">
-            <span class="prompt">jorge@omaha</span><span class="dim">:</span><span class="path">~/build</span><span class="dim">$</span>
-            <span id="typeTarget" class="cmd"></span><span class="caret">▍</span>
-          </p>
-
-          <h1>
-            Calm by default.<br />
-            <span class="accent">Wow when you engage.</span>
-          </h1>
-
-          <p class="lead">
-            Software Developer in Omaha • Founder at <strong>NiftyTechs</strong>
-          </p>
-
-          <div class="cta-row">
-            <button class="btn primary" data-jump="work" type="button">Explore Work</button>
-            <button class="btn ghost" data-jump="about" type="button">About</button>
-            <a class="btn subtle" href="https://niftytechs.com" target="_blank" rel="noreferrer">NiftyTechs ↗</a>
-          </div>
-
-          <p class="micro">Tip: This mode stays calm until you move/hover/scroll.</p>
-        </section>
-
-        <section class="panel" data-panel="about">
-          <h2>About</h2>
-          <p>
-            I’m Jorge Grimaldo — a developer focused on clean UI, reliable systems, and fast, maintainable web apps.
-            I like turning ideas into real products and making technology feel simple.
-          </p>
-
-          <div class="grid">
-            <div class="card">
-              <h3>What I build</h3>
-              <ul>
-                <li>Web apps & dashboards</li>
-                <li>APIs and backend services</li>
-                <li>Deployments, domains, performance fixes</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Based in</h3>
-              <p class="big">Omaha, NE</p>
-              <p class="muted">Open to projects & collaborations.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" data-panel="work">
-          <h2>Work</h2>
-          <p>Selected builds. Calm and readable here — the scene provides the “wow.”</p>
-
-          <div class="work-grid">
-            <article class="work-card">
-              <div class="work-top">
-                <h3>Personal Portfolio</h3><span class="tag">Live</span>
-              </div>
-              <p>Fast, modern, responsive — designed for clarity and speed.</p>
-              <div class="chips"><span>HTML</span><span>CSS</span><span>JS</span></div>
-            </article>
-
-            <article class="work-card">
-              <div class="work-top">
-                <h3>NiftyTechs Builds</h3><span class="tag">Client</span>
-              </div>
-              <p>Practical business websites & apps built for real-world use.</p>
-              <div class="chips"><span>Web Apps</span><span>APIs</span><span>Deploy</span></div>
-            </article>
-
-            <article class="work-card">
-              <div class="work-top">
-                <h3>Automation</h3><span class="tag">Tools</span>
-              </div>
-              <p>Utilities that remove friction: scripts, helpers, internal tools.</p>
-              <div class="chips"><span>Automation</span><span>DX</span><span>Ops</span></div>
-            </article>
-          </div>
-
-          <div class="cta-row">
-            <a class="btn primary" href="https://github.com/JorgeGS1991" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <button class="btn ghost" data-jump="contact" type="button">Let’s build</button>
-          </div>
-        </section>
-
-        <section class="panel" data-panel="nifty">
-          <h2>NiftyTechs</h2>
-          <p>
-            I’m the founder of NiftyTechs — building practical digital solutions for businesses:
-            websites, web apps, and ongoing improvements.
-          </p>
-
-          <div class="grid">
-            <div class="card">
-              <h3>What we help with</h3>
-              <ul>
-                <li>Business websites & landing pages</li>
-                <li>Custom web applications</li>
-                <li>Maintenance, performance, updates</li>
-                <li>Domains & deployments</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>Visit</h3>
-              <a class="btn primary" href="https://niftytechs.com" target="_blank" rel="noreferrer">niftytechs.com ↗</a>
-              <p class="muted">Personal brand + company link, cleanly separated.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel" data-panel="contact">
-          <h2>Contact</h2>
-          <p>Want to collaborate or hire me? Email is best.</p>
-
-          <div class="contact">
-            <a class="btn primary" href="mailto:hello@jgrimaldo.com">hello@jgrimaldo.com</a>
-            <a class="btn ghost" href="https://niftytechs.com" target="_blank" rel="noreferrer">NiftyTechs ↗</a>
-          </div>
-
-          <p class="muted">© <span id="year"></span> Jorge Grimaldo</p>
-        </section>
-      </main>
-    </div>
-
-    <!-- STATIC LANDING (default) -->
-    <main id="top" class="static">
-      <section class="hero">
-        <div class="container">
-          <p class="kicker">Software Developer • Omaha</p>
-          <h1>
-            Jorge Grimaldo<br />
-            <span class="accent">Builds modern web software</span>
-          </h1>
-          <p class="lead">
-            Calm, clean, and reliable builds — from polished interfaces to APIs and deployment.
-            Founder at <strong>NiftyTechs</strong>.
-          </p>
-
-          <div class="cta-row">
-            <a class="btn primary" href="#work">View Work</a>
-            <a class="btn ghost" href="#contact">Contact</a>
-            <button class="btn subtle" id="enterImmersive" type="button">Try Immersive ✨</button>
-          </div>
-        </div>
       </section>
 
-      <section id="about" class="section">
-        <div class="container">
-          <h2>About</h2>
-          <p>
-            I’m Jorge Grimaldo — a developer focused on building clean, maintainable applications that ship.
-            Based in Omaha, I work across the web stack and love turning ideas into real products.
-          </p>
-        </div>
-      </section>
-
-      <section id="work" class="section alt">
-        <div class="container">
-          <h2>Work</h2>
-          <p>A few highlights — practical builds, clean UI, and reliable delivery.</p>
-
-          <div class="work-grid">
-            <article class="work-card">
-              <div class="work-top">
-                <h3>Personal Portfolio</h3><span class="tag">Live</span>
-              </div>
-              <p>Fast, modern, responsive — designed for clarity and speed.</p>
-              <div class="chips"><span>HTML</span><span>CSS</span><span>JS</span></div>
-            </article>
-
-            <article class="work-card">
-              <div class="work-top">
-                <h3>NiftyTechs Builds</h3><span class="tag">Client</span>
-              </div>
-              <p>Websites & apps built for real-world business needs.</p>
-              <div class="chips"><span>Web Apps</span><span>APIs</span><span>Deploy</span></div>
-            </article>
-
-            <article class="work-card">
-              <div class="work-top">
-                <h3>Automation</h3><span class="tag">Tools</span>
-              </div>
-              <p>Utilities and scripts that remove friction and speed up workflows.</p>
-              <div class="chips"><span>Automation</span><span>DX</span><span>Ops</span></div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="nifty" class="section">
-        <div class="container">
-          <h2>NiftyTechs</h2>
-          <p>
-            I’m the founder of NiftyTechs — building practical digital solutions for businesses.
-          </p>
-          <a class="btn primary" href="https://niftytechs.com" target="_blank" rel="noreferrer">Visit NiftyTechs ↗</a>
-        </div>
-      </section>
-
-      <section id="contact" class="section alt">
-        <div class="container">
-          <h2>Contact</h2>
-          <p>Want to work together? Email is best.</p>
-          <a class="btn primary" href="mailto:hello@jgrimaldo.com">hello@jgrimaldo.com</a>
-          <p class="muted">© <span id="year2"></span> Jorge Grimaldo</p>
-        </div>
+      <!-- CONTACT -->
+      <section class="panel" data-panel="contact">
+        <h2>Contact</h2>
+        <p>Want to work together? Email is best.</p>
+        <a class="btn primary" href="mailto:hello@jgrimaldo.com">
+          hello@jgrimaldo.com
+        </a>
+        <p class="muted">© <span id="year"></span> Jorge Grimaldo</p>
       </section>
     </main>
+  </div>
 
-    <script type="module" src="/static/app.js"></script>
-  </body>
+  <script type="module" src="/static/app.js"></script>
+</body>
 </html>
