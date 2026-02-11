@@ -2,25 +2,25 @@ import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
 
 const canvas = document.getElementById("scene");
 const panels = [...document.querySelectorAll(".panel")];
-const cmdBtns = [...document.querySelectorAll(".command-strip button")];
-const yearEl = document.getElementById("year");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+const buttons = [...document.querySelectorAll("[data-jump]")];
+const year = document.getElementById("year");
+if (year) year.textContent = new Date().getFullYear();
 
 /* ---------- Typewriter ---------- */
-const typeTarget = document.getElementById("typeTarget");
+const target = document.getElementById("typeTarget");
 const lines = ["npm run build", "deploying…", "ship it 🚀"];
 let li=0, ci=0;
-(function loop(){
-  if(!typeTarget) return;
+(function type(){
+  if(!target) return;
   if(ci < lines[li].length){
-    typeTarget.textContent += lines[li][ci++];
-    setTimeout(loop,60);
+    target.textContent += lines[li][ci++];
+    setTimeout(type,60);
   } else {
     setTimeout(()=>{
-      typeTarget.textContent="";
+      target.textContent="";
       ci=0;
       li=(li+1)%lines.length;
-      loop();
+      type();
     },900);
   }
 })();
@@ -31,13 +31,12 @@ renderer.setSize(innerWidth,innerHeight);
 renderer.setPixelRatio(Math.min(devicePixelRatio,2));
 
 const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x05060a,0.03);
+scene.fog = new THREE.FogExp2(0x05060a,.03);
 
 const camera = new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,200);
 camera.position.set(0,.8,8);
 
-const ambient = new THREE.AmbientLight(0x88ccee,.35);
-scene.add(ambient);
+scene.add(new THREE.AmbientLight(0x88ccee,.35));
 
 const stars = (() => {
   const g = new THREE.BufferGeometry();
@@ -56,4 +55,56 @@ scene.add(stars);
 
 /* ---------- Sections ---------- */
 const sections=[
-  {id
+  {id:"hero",z:6.5},
+  {id:"about",z:-10},
+  {id:"work",z:-32},
+  {id:"nifty",z:-54},
+  {id:"contact",z:-76}
+];
+
+document.body.style.height = "6000px";
+
+let targetZ = sections[0].z;
+
+function jumpTo(id){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const a = sections[0].z;
+  const b = sections.at(-1).z;
+  const s = sections.find(x=>x.id===id);
+  if(!s) return;
+  scrollTo({top:((s.z-a)/(b-a))*max,behavior:"smooth"});
+}
+
+buttons.forEach(b=>{
+  b.addEventListener("click",()=>jumpTo(b.dataset.jump));
+});
+
+addEventListener("scroll",()=>{
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const t = scrollY / max;
+  targetZ = THREE.MathUtils.lerp(sections[0].z,sections.at(-1).z,t);
+});
+
+function nearest(z){
+  return sections.reduce((a,b)=>Math.abs(b.z-z)<Math.abs(a.z-z)?b:a).id;
+}
+
+/* ---------- Animate ---------- */
+(function animate(){
+  requestAnimationFrame(animate);
+  camera.position.z += (targetZ-camera.position.z)*.06;
+  camera.lookAt(0,.2,camera.position.z-5);
+  stars.rotation.y += .0004;
+
+  const active = nearest(camera.position.z);
+  panels.forEach(p=>p.classList.toggle("active",p.dataset.panel===active));
+  buttons.forEach(b=>b.classList.toggle("active",b.dataset.jump===active));
+
+  renderer.render(scene,camera);
+})();
+
+addEventListener("resize",()=>{
+  renderer.setSize(innerWidth,innerHeight);
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+});
